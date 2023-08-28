@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+
 export const config = () => ({
   port: Number(process.env.PORT),
   database: {
@@ -11,5 +13,9 @@ export const config = () => ({
     logging: JSON.parse(process.env.DB_LOGGING),
     entities: ['dist/**/*.entity.js'],
     autoLoadEntities: true,
+    ssl: {
+      rejectUnauthorized: true,
+      //ca: fs.readFileSync(__dirname + '/cert/ca-certificates.pem'),
+    },
   },
 });
